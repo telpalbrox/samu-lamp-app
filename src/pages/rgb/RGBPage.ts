@@ -15,7 +15,7 @@ export class RGBPage implements OnInit {
     }
 
     ngOnInit() {
-        this.color = localStorage.getItem('color');
+        this.color = localStorage.getItem('color') || '#000000';
     }
 
     async setColor() {
