@@ -3,6 +3,11 @@ import { Injectable } from "@angular/core";
 import { BluetoothSerialService } from './BluetoothSerialService';
 import { SettingsService } from './SettingsService';
 
+export interface SensorsInfo {
+    temperature: number;
+    humidity: number;
+}
+
 interface RGB {
     r: number;
     g: number;
@@ -44,6 +49,17 @@ export class BluetoothLampService {
     async turnOffAlarm() {
         await this.connect();
         this.bluetoothSerialService.write(`turnoffalarm`);
+    }
+
+    async getSensorsInfo(): Promise<SensorsInfo> {
+        await this.connect();
+        await this.bluetoothSerialService.write('sensors');
+        const data = await this.bluetoothSerialService.read();
+        const infoArray = data.split(' ').shift();
+        return {
+            temperature: parseFloat(infoArray[0]),
+            humidity: parseFloat(infoArray[1])
+        };
     }
 
     private async connect() {

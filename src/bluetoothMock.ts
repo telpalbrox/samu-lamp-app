@@ -65,6 +65,9 @@
             interval = window.setInterval(timer_cb, 100);
             process_cb = data_cb;
         },
+        unRegister() {
+            process_cb = null;
+        },
         disconnect : function(success_cb, fail_cb) {
             btlog("bluetoothSerial.disconnect");
             connected = false;
@@ -167,5 +170,6 @@
         discoverUnpaired : function(success_cb, fail_cb) {
             alert("bluetoothSerial.discoverUnpaired is not implemented");
         },
+        fake: true
     }
 })();

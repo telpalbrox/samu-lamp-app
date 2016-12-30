@@ -28,6 +28,9 @@ interface BluetoothSerial {
     clearDeviceDiscoveredListener();
     setName(name: string);
     setDiscoverable(discoverableDuration: number);
+    register(callback: Function);
+    unRegister();
+    fake: boolean;
 }
 
 declare var bluetoothSerial: BluetoothSerial;
