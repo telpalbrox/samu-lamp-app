@@ -3,16 +3,10 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { BluetoothSerialService } from '../services/BluetoothSerialService';
-import { SettingsService } from '../services/SettingsService';
 
 
 @Component({
-  templateUrl: 'app.html',
-  providers: [
-    BluetoothSerialService,
-    SettingsService
-  ]
+  templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage = TabsPage;

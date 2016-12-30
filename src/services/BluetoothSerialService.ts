@@ -80,9 +80,9 @@ export class BluetoothSerialService {
         });
     }
 
-    isConnected(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            bluetoothSerial.isConnected(resolve, reject);
+    isConnected(): Promise<boolean> {
+        return new Promise((resolve) => {
+            bluetoothSerial.isConnected(() => resolve(true), () => resolve(false));
         });
     }
 

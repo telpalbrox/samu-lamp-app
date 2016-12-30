@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, Tabs } from 'ionic-angular';
 
 import { DeviceSettingsPage } from '../deviceSettings/DeviceSettings';
+import { RGBPage } from '../rgb/RGBPage';
 
 @Component({
   selector: 'page-home',
@@ -16,5 +17,9 @@ export class HomePage {
 
   goToSettingsPage() {
     this.navCtrl.push(DeviceSettingsPage);
+  }
+
+  goToRGBPage() {
+    (this.navCtrl.parent as Tabs).select(1);
   }
 }
