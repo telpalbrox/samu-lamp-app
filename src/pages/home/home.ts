@@ -22,4 +22,8 @@ export class HomePage {
   goToRGBPage() {
     (this.navCtrl.parent as Tabs).select(1);
   }
+
+  goToMessagePage() {
+    (this.navCtrl.parent as Tabs).select(2);
+  }
 }

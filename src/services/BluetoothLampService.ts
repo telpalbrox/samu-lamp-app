@@ -26,6 +26,11 @@ export class BluetoothLampService {
         await this.bluetoothSerialService.write(`rgb(${r}, ${g}, ${b})`);
     }
 
+    async setMessage(message: string) {
+        await this.connect();
+        this.bluetoothSerialService.write(`set message ${message}`);
+    }
+
     async connect() {
         if (await this.bluetoothSerialService.isConnected()) {
             return;
