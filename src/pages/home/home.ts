@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { NavController, Tabs } from 'ionic-angular';
 
 import { DeviceSettingsPage } from '../deviceSettings/DeviceSettings';
-import { RGBPage } from '../rgb/RGBPage';
 
 @Component({
   selector: 'page-home',

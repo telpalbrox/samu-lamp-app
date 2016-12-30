@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { BluetoothLampService } from '../../services/BluetoothLampService';
 
@@ -7,7 +7,6 @@ import { BluetoothLampService } from '../../services/BluetoothLampService';
     templateUrl: 'RGBPage.html'
 })
 export class RGBPage implements OnInit {
-    private colorInput: HTMLInputElement;
     private color: string;
     private randomColor: boolean = false;
 

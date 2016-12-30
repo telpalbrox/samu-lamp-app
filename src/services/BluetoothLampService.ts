@@ -28,7 +28,7 @@ export class BluetoothLampService {
 
     async setMessage(message: string) {
         await this.connect();
-        this.bluetoothSerialService.write(`set message ${message}`);
+        this.bluetoothSerialService.write(`${message}`);
     }
 
     async connect() {
@@ -50,6 +50,7 @@ function componentToHex(c: number): string {
     return hex.length == 1 ? "0" + hex : hex;
 }
 
+// tslint:disable-next-line
 function rgbToHex(r: number, g: number, b: number): string {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }

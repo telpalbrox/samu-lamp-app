@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController, ToastController, LoadingController } from 'ionic-angular';
+import { ToastController, LoadingController } from 'ionic-angular';
 
 import { BluetoothSerialService } from '../../services/BluetoothSerialService';
 import { SettingsService } from '../../services/SettingsService';
