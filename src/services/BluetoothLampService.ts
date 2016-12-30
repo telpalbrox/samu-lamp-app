@@ -23,27 +23,27 @@ export class BluetoothLampService {
             return;
         }
         const { r, g, b } = hexToRgb(color);
-        await this.bluetoothSerialService.write(`rgb(${r}, ${g}, ${b})`);
+        await this.bluetoothSerialService.write(`color ${r} ${g} ${b}`);
     }
 
     async setMessage(message: string) {
         await this.connect();
-        this.bluetoothSerialService.write(`${message}`);
+        this.bluetoothSerialService.write(`message ${message}`);
     }
 
     async setTime(time: string) {
         await this.connect();
-        this.bluetoothSerialService.write(`set time ${time}`);
+        this.bluetoothSerialService.write(`time ${time}`);
     }
 
     async setAlarm(time: string) {
         await this.connect();
-        this.bluetoothSerialService.write(`set alarm ${time}`);
+        this.bluetoothSerialService.write(`setalarm ${time}`);
     }
 
     async turnOffAlarm() {
         await this.connect();
-        this.bluetoothSerialService.write(`turn off alarm`);
+        this.bluetoothSerialService.write(`turnoffalarm`);
     }
 
     async connect() {
