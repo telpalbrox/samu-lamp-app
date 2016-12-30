@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { DeviceSettingsPage } from '../pages/deviceSettings/DeviceSettings';
 import { RGBPage } from '../pages/rgb/RGBPage';
 import { MessagePage } from '../pages/message/MessagePage';
+import { DebugPage } from '../pages/debug/DebugPage';
 import { AlarmPage } from '../pages/alarm/AlarmPage';
 import { BluetoothLampService } from '../services/BluetoothLampService';
 import { BluetoothSerialService } from '../services/BluetoothSerialService';
@@ -20,7 +21,8 @@ import { SettingsService } from '../services/SettingsService';
     DeviceSettingsPage,
     RGBPage,
     MessagePage,
-    AlarmPage
+    AlarmPage,
+    DebugPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -34,7 +36,8 @@ import { SettingsService } from '../services/SettingsService';
     DeviceSettingsPage,
     RGBPage,
     MessagePage,
-    AlarmPage
+    AlarmPage,
+    DebugPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

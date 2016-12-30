@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Debug</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Mensaje</ion-label>
+            <ion-input [(ngModel)]="message" type="text" value=""></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <div padding>
+        <button ion-button color="primary" block (click)="sendMessage()">Enviar</button>
+    </div>
+</ion-content>

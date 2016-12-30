@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, Tabs } from 'ionic-angular';
 
 import { DeviceSettingsPage } from '../deviceSettings/DeviceSettings';
+import { DebugPage } from '../debug/DebugPage';
 
 @Component({
   selector: 'page-home',
@@ -33,5 +34,9 @@ export class HomePage implements OnInit {
 
   goToAlarmPage() {
     this.tabs.select(3);
+  }
+
+  goToDebugPage() {
+    this.navCtrl.push(DebugPage);
   }
 }

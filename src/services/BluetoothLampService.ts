@@ -46,7 +46,7 @@ export class BluetoothLampService {
         this.bluetoothSerialService.write(`turnoffalarm`);
     }
 
-    async connect() {
+    private async connect() {
         if (await this.bluetoothSerialService.isConnected()) {
             return;
         }
@@ -57,6 +57,11 @@ export class BluetoothLampService {
         }
 
         this.bluetoothSerialService.connect(device.address);
+    }
+
+    async send(data: string) {
+        await this.connect();
+        this.bluetoothSerialService.write(data);
     }
 }
 
