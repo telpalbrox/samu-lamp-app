@@ -133,7 +133,10 @@
               "address": "00:06:66:4D:00:00",
               "name": "RN42"
           }]
-          success_cb(devices);        },
+          setTimeout(() => {
+              success_cb(devices);
+          }, 1000);
+        },
         isConnected : function(success_cb, fail_cb) {
             btlog("bluetoothSerial.isConnected: " + connected);
             if(connected) {

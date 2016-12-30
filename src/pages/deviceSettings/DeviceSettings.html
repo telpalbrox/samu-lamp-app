@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Ajustes</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div *ngIf="pairedDevice">
+        <ion-card>
+            <ion-card-header>
+                Dispositivo emparejado
+            </ion-card-header>
+            <ion-card-content>
+                <strong>Nombre:</strong> {{ pairedDevice.name }} <br>
+                <strong>MAC:</strong> {{ pairedDevice.address }} <br>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div>
+        <ion-list>
+            <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+                {{ device.name }}
+            </button>
+        </ion-list>
+    </div>
+</ion-content>

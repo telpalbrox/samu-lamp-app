@@ -2,25 +2,25 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class BluetoothSerialService {
-    connect(macAddressOrUuid: string): Promise<undefined> {
+    connect(macAddressOrUuid: string): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.connect(macAddressOrUuid, resolve, reject);
         });
     }
 
-    connectInsecure(macAddress: string): Promise<undefined> {
+    connectInsecure(macAddress: string): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.connectInsecure(macAddress, resolve, reject);
         });
     }
 
-    disconnect(): Promise<undefined> {
+    disconnect(): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.disconnect(resolve, reject);
         });
     }
 
-    write(data: string | number[] | ArrayBuffer | Uint8Array): Promise<undefined> {
+    write(data: string | number[] | ArrayBuffer | Uint8Array): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.write(data, resolve, reject);
         });
@@ -38,19 +38,19 @@ export class BluetoothSerialService {
         });
     }
 
-    readUntil(delimiter: string): Promise<undefined> {
+    readUntil(delimiter: string): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.readUntil(delimiter, reject);
         });
     }
 
-    subscribe(delimiter: string): Promise<undefined> {
+    subscribe(delimiter: string): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.subscribe(delimiter, resolve, reject);
         });
     }
 
-    unsubscribe(): Promise<undefined> {
+    unsubscribe(): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.unsubscribe(resolve, reject);
         });
@@ -62,13 +62,13 @@ export class BluetoothSerialService {
         });
     }
 
-    unsubscribeRawData(): Promise<undefined> {
+    unsubscribeRawData(): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.unsubscribeRawData(resolve, reject);
         });
     }
 
-    clear(): Promise<undefined> {
+    clear(): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.clear(resolve, reject);
         });
@@ -80,13 +80,13 @@ export class BluetoothSerialService {
         });
     }
 
-    isConnected(): Promise<undefined> {
+    isConnected(): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.isConnected(resolve, reject);
         });
     }
 
-    isEnabled(): Promise<undefined> {
+    isEnabled(): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.isEnabled(resolve, reject);
         });
@@ -96,7 +96,7 @@ export class BluetoothSerialService {
         bluetoothSerial.showBluetoothSettings();
     }
 
-    enable(): Promise<undefined> {
+    enable(): Promise<any> {
         return new Promise((resolve, reject) => {
             bluetoothSerial.enable(resolve, reject);
         });
