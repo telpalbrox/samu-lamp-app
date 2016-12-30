@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { NavController, Tabs } from 'ionic-angular';
 
@@ -8,10 +8,15 @@ import { DeviceSettingsPage } from '../deviceSettings/DeviceSettings';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  private tabs: Tabs;
 
   constructor(public navCtrl: NavController) {
 
+  }
+
+  ngOnInit() {
+    this.tabs = (this.navCtrl.parent as Tabs);
   }
 
   goToSettingsPage() {
@@ -19,10 +24,14 @@ export class HomePage {
   }
 
   goToRGBPage() {
-    (this.navCtrl.parent as Tabs).select(1);
+    this.tabs.select(1);
   }
 
   goToMessagePage() {
-    (this.navCtrl.parent as Tabs).select(2);
+    this.tabs.select(2);
+  }
+
+  goToAlarmPage() {
+    this.tabs.select(3);
   }
 }

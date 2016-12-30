@@ -31,6 +31,21 @@ export class BluetoothLampService {
         this.bluetoothSerialService.write(`${message}`);
     }
 
+    async setTime(time: string) {
+        await this.connect();
+        this.bluetoothSerialService.write(`set time ${time}`);
+    }
+
+    async setAlarm(time: string) {
+        await this.connect();
+        this.bluetoothSerialService.write(`set alarm ${time}`);
+    }
+
+    async turnOffAlarm() {
+        await this.connect();
+        this.bluetoothSerialService.write(`turn off alarm`);
+    }
+
     async connect() {
         if (await this.bluetoothSerialService.isConnected()) {
             return;
