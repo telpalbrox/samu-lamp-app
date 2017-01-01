@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
+import { AlertController, Alert, App, ToastController, Loading, LoadingController } from 'ionic-angular';
 
 import { BluetoothSerialService } from './BluetoothSerialService';
 import { SettingsService } from './SettingsService';
+import { DeviceSettingsPage } from '../pages/deviceSettings/DeviceSettings';
 
 export interface SensorsInfo {
     temperature: number;
@@ -16,10 +18,31 @@ interface RGB {
 
 @Injectable()
 export class BluetoothLampService {
+    private deviceNotConfiguredAlert: Alert;
+    private loadingSpinner: Loading;
+
     constructor(
+        private app: App,
+        public loadingCtrl: LoadingController,
+        private alertCtrl: AlertController,
+        public toastCtrl: ToastController,
         private bluetoothSerialService: BluetoothSerialService,
         private settingsService: SettingsService
-    ) { }
+    ) {
+        this.deviceNotConfiguredAlert = this.alertCtrl.create({
+            title: 'Dispositivo no configurado',
+            message: 'Debes configurar el dispositivo para un correcto funcionamiento de la aplicación',
+            buttons: [{
+                text: 'Configurar dispositivo',
+                handler: () => {
+                    this.app.getActiveNav().push(DeviceSettingsPage);
+                }
+            }]
+        });
+        this.loadingSpinner = this.loadingCtrl.create({
+            content: 'Conectando con el dispositivo'
+        });
+    }
 
     async setRGBColor(color: string, random?: boolean) {
         await this.connect();
@@ -61,23 +84,64 @@ export class BluetoothLampService {
             humidity: parseFloat(infoArray[1])
         };
     }
-    
+
     async send(data: string) {
         await this.connect();
         this.bluetoothSerialService.write(data);
     }
 
+    showEnableBluetoothAlert() {
+        return new Promise((resolve) => {
+            const bluetoothAlert = this.alertCtrl.create({
+                title: 'Bluetooth',
+                message: 'Es necesario activar el Bluetooth para poder usar la aplicación',
+                enableBackdropDismiss: false,
+                buttons: [{
+                    text: 'Activar Bluetooth',
+                    handler: () => {
+                        this.bluetoothSerialService.enable().then((enabled) => {
+                            if (enabled) {
+                                bluetoothAlert.dismiss();
+                                resolve();
+                            }
+                        });
+                        return false;
+                    }
+                }]
+            });
+
+            bluetoothAlert.present();
+        });
+    }
+
     private async connect() {
+        if (!await this.bluetoothSerialService.enable()) {
+            await this.showEnableBluetoothAlert();
+        }
+
         if (await this.bluetoothSerialService.isConnected()) {
             return;
         }
 
         const device = this.settingsService.getDevice();
         if (!device) {
+            this.deviceNotConfiguredAlert.present();
             throw new Error('There is not configured device!');
         }
 
-        this.bluetoothSerialService.connect(device.address);
+        try {
+            this.loadingSpinner.present();
+            await this.bluetoothSerialService.connect(device.address);
+            this.loadingSpinner.dismiss();
+        } catch(error) {
+            this.toastCtrl.create({
+                message: `Error conectando con ${device.name}`,
+                duration: 5000,
+                showCloseButton: true
+            }).present();
+            this.loadingSpinner.dismiss();
+            throw error;
+        }
     }
 }
 

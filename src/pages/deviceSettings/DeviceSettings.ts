@@ -40,14 +40,14 @@ export class DeviceSettingsPage implements OnInit {
             await this.bluetoothSerialService.connect(device.address);
             const toast = this.toastCtrl.create({
                 message: `${device.name} emparejado correctamente`,
-                duration: 2000,
+                duration: 5000,
                 showCloseButton: true
             });
             toast.present();
         } catch(error) {
             const toast = this.toastCtrl.create({
                 message: `Error conectando con ${device.name}`,
-                duration: 2000,
+                duration: 5000,
                 showCloseButton: true
             });
             toast.present();
