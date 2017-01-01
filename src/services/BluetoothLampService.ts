@@ -61,6 +61,11 @@ export class BluetoothLampService {
             humidity: parseFloat(infoArray[1])
         };
     }
+    
+    async send(data: string) {
+        await this.connect();
+        this.bluetoothSerialService.write(data);
+    }
 
     private async connect() {
         if (await this.bluetoothSerialService.isConnected()) {
@@ -73,11 +78,6 @@ export class BluetoothLampService {
         }
 
         this.bluetoothSerialService.connect(device.address);
-    }
-
-    async send(data: string) {
-        await this.connect();
-        this.bluetoothSerialService.write(data);
     }
 }
 

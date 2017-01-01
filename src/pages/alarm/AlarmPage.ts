@@ -8,7 +8,6 @@ import { BluetoothLampService } from '../../services/BluetoothLampService';
 })
 export class AlarmPage {
     @ViewChild('timeInput') timeInputRef: ElementRef;
-    private alarmTime: string = '';
 
     constructor(public bluetoothLampService: BluetoothLampService) {
 

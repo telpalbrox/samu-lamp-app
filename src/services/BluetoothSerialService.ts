@@ -96,9 +96,9 @@ export class BluetoothSerialService {
         bluetoothSerial.showBluetoothSettings();
     }
 
-    enable(): Promise<any> {
+    enable(): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            bluetoothSerial.enable(resolve, reject);
+            bluetoothSerial.enable(() => resolve(true), () => resolve(false));
         });
     }
 
