@@ -18,7 +18,9 @@ export class AlarmPage {
     }
 
     setAlarm() {
-        this.bluetoothLampService.setAlarm(this.getTimeFromDate(this.timeInputRef.nativeElement.valueAsDate));
+        const alarmDate: Date = new Date(this.timeInputRef.nativeElement.valueAsDate);
+        alarmDate.setHours(alarmDate.getHours() - 1);
+        this.bluetoothLampService.setAlarm(this.getTimeFromDate(alarmDate));
     }
 
     turnOffAlarm() {
