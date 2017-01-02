@@ -24,6 +24,12 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
       this.enableBT();
+      (window as any).notificationListener && (window as any).notificationListener.listen(function(n){
+         console.log("Received notification");
+         console.log(n);
+       }, function(e){
+         console.log("Notification Error " + e);
+       });
     });
   }
 
