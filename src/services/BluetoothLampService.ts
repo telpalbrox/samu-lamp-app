@@ -114,6 +114,11 @@ export class BluetoothLampService {
         });
     }
 
+    async sendNotification(notification: Notification) {
+        await this.connect();
+        await this.bluetoothSerialService.write(`notification 0 0 0 ${notification.text}`);
+    }
+
     private async connect() {
         if (!await this.bluetoothSerialService.enable()) {
             await this.showEnableBluetoothAlert();

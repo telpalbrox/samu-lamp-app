@@ -13,6 +13,7 @@ import { AlarmPage } from '../pages/alarm/AlarmPage';
 import { BluetoothLampService } from '../services/BluetoothLampService';
 import { BluetoothSerialService } from '../services/BluetoothSerialService';
 import { SettingsService } from '../services/SettingsService';
+import { NotificationsService } from '../services/NotificationsService';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SettingsService } from '../services/SettingsService';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SettingsService,
     BluetoothSerialService,
-    BluetoothLampService
+    BluetoothLampService,
+    NotificationsService
   ]
 })
 export class AppModule {}

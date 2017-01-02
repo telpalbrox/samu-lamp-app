@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BluetoothSerialService } from '../services/BluetoothSerialService';
 import { BluetoothLampService } from '../services/BluetoothLampService';
+import { NotificationsService } from '../services/NotificationsService';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,8 @@ export class MyApp {
     platform: Platform,
     private alertCtrl: AlertController,
     private bluetoothSerialService: BluetoothSerialService,
-    private bluetoothLampService: BluetoothLampService
+    private bluetoothLampService: BluetoothLampService,
+    private notificationsService: NotificationsService
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -24,12 +26,7 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
       this.enableBT();
-      (window as any).notificationListener && (window as any).notificationListener.listen(function(n){
-         console.log("Received notification");
-         console.log(n);
-       }, function(e){
-         console.log("Notification Error " + e);
-       });
+      this.notificationsService.bindEvent();
     });
   }
 
