@@ -56,22 +56,22 @@ export class BluetoothLampService {
 
     async setMessage(message: string) {
         await this.connect();
-        this.bluetoothSerialService.write(`message ${message}`);
+        await this.bluetoothSerialService.write(`message ${message}`);
     }
 
     async setTime(time: string) {
         await this.connect();
-        this.bluetoothSerialService.write(`time ${time}`);
+        await this.bluetoothSerialService.write(`time ${time}`);
     }
 
     async setAlarm(time: string) {
         await this.connect();
-        this.bluetoothSerialService.write(`setalarm ${time}`);
+        await this.bluetoothSerialService.write(`setalarm ${time}`);
     }
 
     async turnOffAlarm() {
         await this.connect();
-        this.bluetoothSerialService.write(`turnoffalarm`);
+        await this.bluetoothSerialService.write(`turnoffalarm`);
     }
 
     async getSensorsInfo(): Promise<SensorsInfo> {
@@ -87,7 +87,7 @@ export class BluetoothLampService {
 
     async send(data: string) {
         await this.connect();
-        this.bluetoothSerialService.write(data);
+        await this.bluetoothSerialService.write(data);
     }
 
     showEnableBluetoothAlert() {
