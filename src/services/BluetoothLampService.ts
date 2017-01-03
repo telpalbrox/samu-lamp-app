@@ -116,7 +116,7 @@ export class BluetoothLampService {
 
     async sendNotification(notification: Notification) {
         await this.connect(false);
-        await this.bluetoothSerialService.write(`notification 0 0 0 ${notification.text}`);
+        await this.bluetoothSerialService.write(`notification 0 0 255 ${notification.appName}: ${notification.title} ${notification.text} ${notification.textLines}`.trim());
     }
 
     private async connect(showUI: boolean = true) {
