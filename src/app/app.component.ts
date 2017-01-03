@@ -25,6 +25,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      if (typeof cordova !== 'undefined') {
+        cordova.plugins.backgroundMode.setDefaults({
+          text:'Enviando notificationes...'
+        });
+        // Enable background mode
+        cordova.plugins.backgroundMode.enable();
+      }
       this.enableBT();
       this.notificationsService.bindEvent();
     });
