@@ -115,13 +115,13 @@ export class BluetoothLampService {
     }
 
     async sendNotification(notification: Notification) {
-        await this.connect();
+        await this.connect(false);
         await this.bluetoothSerialService.write(`notification 0 0 0 ${notification.text}`);
     }
 
-    private async connect() {
-        if (!await this.bluetoothSerialService.enable()) {
-            await this.showEnableBluetoothAlert();
+    private async connect(showUI: boolean = true) {
+        if (showUI && !await this.bluetoothSerialService.enable()) {
+            showUI && await this.showEnableBluetoothAlert();
         }
 
         if (await this.bluetoothSerialService.isConnected()) {
@@ -130,21 +130,21 @@ export class BluetoothLampService {
 
         const device = this.settingsService.getDevice();
         if (!device) {
-            this.deviceNotConfiguredAlert.present();
+            showUI && this.deviceNotConfiguredAlert.present();
             throw new Error('There is not configured device!');
         }
 
         try {
-            this.loadingSpinner.present();
+            showUI && this.loadingSpinner.present();
             await this.bluetoothSerialService.connect(device.address);
-            this.loadingSpinner.dismiss();
+            showUI && this.loadingSpinner.dismiss();
         } catch(error) {
-            this.toastCtrl.create({
+            showUI && this.toastCtrl.create({
                 message: `Error conectando con ${device.name}`,
                 duration: 5000,
                 showCloseButton: true
             }).present();
-            this.loadingSpinner.dismiss();
+            showUI && this.loadingSpinner.dismiss();
             throw error;
         }
     }

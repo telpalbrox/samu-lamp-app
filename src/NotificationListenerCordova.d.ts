@@ -3,6 +3,7 @@ interface Notification {
     package: string;
     text: string;
     textLines: string;
+    appName: string;
 }
 
 interface NotificationListener {
