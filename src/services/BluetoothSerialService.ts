@@ -40,7 +40,7 @@ export class BluetoothSerialService {
 
     readUntil(delimiter: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            bluetoothSerial.readUntil(delimiter, reject);
+            bluetoothSerial.readUntil(delimiter, resolve, reject);
         });
     }
 

@@ -47,7 +47,7 @@ export class BluetoothLampService {
     async setRGBColor(color: string, random?: boolean) {
         await this.connect();
         if (random) {
-            await this.bluetoothSerialService.write('random');
+            await this.bluetoothSerialService.write('color random');
             return;
         }
         const { r, g, b } = hexToRgb(color);

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
+    <ion-card *ngIf="info">
         <ion-card-content>
             <strong>Temperatura:</strong> {{ info.temperature }} <br>
             <strong>Humedad:</strong> {{ info.humidity }} <br>
