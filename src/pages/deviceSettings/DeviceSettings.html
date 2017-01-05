@@ -5,6 +5,21 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>Sonido</ion-label>
+            <ion-toggle checked="false" [(ngModel)]="isSoundActive" (ngModelChange)="setSoundActive()"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Notificaciones</ion-label>
+            <ion-toggle checked="false" [(ngModel)]="isNotificationsActive" (ngModelChange)="setNotificationActive()"></ion-toggle>
+        </ion-item>
+        <!--<ion-item>
+            <ion-label>Notificaciones ampliadas</ion-label>
+            <ion-toggle checked="false" [(ngModel)]="isExpandedNotifications" (ngModelChange)="setExpandedNotifications()"></ion-toggle>
+        </ion-item>-->
+    </ion-list>
+
     <div *ngIf="pairedDevice">
         <ion-card>
             <ion-card-header>

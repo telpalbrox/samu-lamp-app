@@ -115,8 +115,17 @@ export class BluetoothLampService {
     }
 
     async sendNotification(notification: Notification) {
+        if (!this.settingsService.isNotificationsActive()) {
+            return;
+        }
         await this.connect(false);
         await this.bluetoothSerialService.write(`notification 0 0 255 ${notification.appName}: ${notification.title} ${notification.text} ${notification.textLines}`.trim());
+    }
+
+    async setSoundActive(soundActive: boolean) {
+        await this.connect();
+        const command = soundActive ? 'soundon' : 'soundoff';
+        await this.bluetoothSerialService.write(command);
     }
 
     private async connect(showUI: boolean = true) {

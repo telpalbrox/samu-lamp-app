@@ -6,6 +6,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { BluetoothSerialService } from '../services/BluetoothSerialService';
 import { BluetoothLampService } from '../services/BluetoothLampService';
 import { NotificationsService } from '../services/NotificationsService';
+import { SettingsService } from '../services/SettingsService';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,22 +19,17 @@ export class MyApp {
     private alertCtrl: AlertController,
     private bluetoothSerialService: BluetoothSerialService,
     private bluetoothLampService: BluetoothLampService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    public settingsService: SettingsService
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      if (typeof cordova !== 'undefined') {
-        cordova.plugins.backgroundMode.setDefaults({
-          text:'Enviando notificationes...'
-        });
-        // Enable background mode
-        cordova.plugins.backgroundMode.enable();
-      }
       this.enableBT();
       this.notificationsService.bindEvent();
+      this.settingsService.setDefaultSettings();
     });
   }
 

@@ -4,6 +4,7 @@ import { ToastController, LoadingController } from 'ionic-angular';
 
 import { BluetoothSerialService } from '../../services/BluetoothSerialService';
 import { SettingsService } from '../../services/SettingsService';
+import { BluetoothLampService } from '../../services/BluetoothLampService';
 
 @Component({
   templateUrl: 'DeviceSettings.html'
@@ -11,15 +12,22 @@ import { SettingsService } from '../../services/SettingsService';
 export class DeviceSettingsPage implements OnInit {
     private devices: BluetoothDevice[];
     private pairedDevice: BluetoothDevice = null;
+    private isNotificationsActive = true;
+    private isSoundActive = true;
+    private isExpandedNotifications = true;
 
     constructor(
-        public loadingCtrl: LoadingController,
-        public toastCtrl: ToastController,
-        public bluetoothSerialService: BluetoothSerialService,
-        public settingsService: SettingsService
+        private loadingCtrl: LoadingController,
+        private toastCtrl: ToastController,
+        private bluetoothSerialService: BluetoothSerialService,
+        private settingsService: SettingsService,
+        private bluetoothLampService: BluetoothLampService
     ) { }
 
     async ngOnInit() {
+        this.isNotificationsActive = this.settingsService.isNotificationsActive();
+        this.isSoundActive = this.settingsService.isSoundActive();
+        this.isExpandedNotifications = this.settingsService.isExpandedNotifications();
         this.pairedDevice = this.settingsService.getDevice();
         const loading = this.loadingCtrl.create({
             content: 'Buscando dispositivos'
@@ -54,5 +62,18 @@ export class DeviceSettingsPage implements OnInit {
             console.error(error);
         }
         loading.dismiss();        
+    }
+
+    async setSoundActive() {
+        await this.bluetoothLampService.setSoundActive(this.isSoundActive);
+        this.settingsService.setSoundActive(this.isSoundActive);
+    }
+
+    setNotificationActive() {
+        this.settingsService.setNotificationsActive(this.isNotificationsActive);
+    }
+
+    setExpandedNotifications() {
+        this.settingsService.setExpandedNotifications(this.isExpandedNotifications);
     }
 }
