@@ -1,6 +1,6 @@
 # Samu Lamp android app
 
-Small android app used for control a small lamp built using arduino
+Small android app used for control a small arduino lamp built using ionic
 
 ## Demo
 https://www.youtube.com/watch?v=k1R4n8MTljo

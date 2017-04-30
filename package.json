@@ -1,7 +1,6 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "samu-lamp-app",
+  "author": "Alberto Luna",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -47,5 +46,5 @@
       "locator": "ios"
     }
   ],
-  "description": "samuLamp: An Ionic project"
+  "description": "Small android app used for control a small arduino lamp built using ionic"
 }
