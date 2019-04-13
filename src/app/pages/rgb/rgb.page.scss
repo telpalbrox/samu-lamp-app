@@ -1,0 +1,10 @@
+.color-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input[type=color] {
+        width: 40%;
+        height: 70px;
+    }
+}

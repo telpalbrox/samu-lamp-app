@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajustes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Sonido</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="isSoundActive" (ngModelChange)="setSoundActive()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Notificaciones</ion-label>
+      <ion-toggle checked="false" [(ngModel)]="isNotificationsActive" (ngModelChange)="setNotificationActive()">
+      </ion-toggle>
+    </ion-item>
+    <!--<ion-item>
+        <ion-label>Notificaciones ampliadas</ion-label>
+        <ion-toggle checked="false" [(ngModel)]="isExpandedNotifications" (ngModelChange)="setExpandedNotifications()"></ion-toggle>
+    </ion-item>-->
+  </ion-list>
+
+  <div *ngIf="pairedDevice">
+    <ion-card>
+      <ion-card-header>
+        Dispositivo emparejado
+      </ion-card-header>
+      <ion-card-content>
+        <strong>Nombre:</strong> {{ pairedDevice.name }} <br>
+        <strong>MAC:</strong> {{ pairedDevice.address }} <br>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
+        <ion-label>
+          {{ device.name }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mensaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating">Mensaje</ion-label>
+    <ion-input [(ngModel)]="message" type="text"></ion-input>
+  </ion-item>
+  <ion-button (click)="setMessage()" expand="block">Enviar</ion-button>
+</ion-content>

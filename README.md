@@ -7,10 +7,8 @@ https://www.youtube.com/watch?v=k1R4n8MTljo
 
 ## Installation
 
-```npm install -g ionic```
+```npm install -g ionic@4.12.0 cordova@9.0.0```
 
 ```npm install```
 
-```ionic platform add https://github.com/apache/cordova-android.git#master```
-
-```ionic run android```
+```ionic cordova run android```

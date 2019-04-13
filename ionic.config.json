@@ -1,6 +1,7 @@
 {
-  "name": "samuLamp",
-  "app_id": "0cb128db",
-  "v2": true,
-  "typescript": true
+  "name": "samu-lamp-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
 }

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Rgb
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="color-container">
+    <input [(ngModel)]="color" type="color">
+  </div>
+  <div>
+    <ion-item>
+      <ion-label>Random</ion-label>
+      <ion-checkbox [(ngModel)]="randomColor"></ion-checkbox>
+    </ion-item>
+    <ion-button (click)="setColor()" expand="block">Cambiar color</ion-button>
+  </div>
+</ion-content>

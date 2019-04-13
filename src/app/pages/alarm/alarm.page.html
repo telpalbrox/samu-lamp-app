@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reloj</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-button (click)="setTime()" expand="block">Establecer hora</ion-button>
+    <label class="set-alarm-container">
+        <ion-button expand="block">Establecer alarma</ion-button>
+        <input #timeInput (ngModelChange)="setAlarm()" type="time">
+    </label>
+    <ion-button (click)="turnOffAlarm()" expand="block">Apagar alarma</ion-button>
+</ion-content>

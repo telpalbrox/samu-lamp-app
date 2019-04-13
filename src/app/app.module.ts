@@ -1,54 +1,27 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { DeviceSettingsPage } from '../pages/deviceSettings/DeviceSettings';
-import { RGBPage } from '../pages/rgb/RGBPage';
-import { MessagePage } from '../pages/message/MessagePage';
-import { DebugPage } from '../pages/debug/DebugPage';
-import { SensorsPage } from '../pages/sensors/SensorsPage';
-import { AlarmPage } from '../pages/alarm/AlarmPage';
-import { BluetoothLampService } from '../services/BluetoothLampService';
-import { BluetoothSerialService } from '../services/BluetoothSerialService';
-import { SettingsService } from '../services/SettingsService';
-import { NotificationsService } from '../services/NotificationsService';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BluetoothLampService } from './services/bluetooth-lamp.service';
+import { SettingsService } from './services/settings.service';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    TabsPage,
-    DeviceSettingsPage,
-    RGBPage,
-    MessagePage,
-    AlarmPage,
-    DebugPage,
-    SensorsPage
-  ],
-  imports: [
-    IonicModule.forRoot(MyApp),
-    FormsModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    TabsPage,
-    DeviceSettingsPage,
-    RGBPage,
-    MessagePage,
-    AlarmPage,
-    DebugPage,
-    SensorsPage
-  ],
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SettingsService,
-    BluetoothSerialService,
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BluetoothLampService,
-    NotificationsService
-  ]
+    SettingsService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
